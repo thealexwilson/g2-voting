@@ -1,34 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Employees</h1>
+<h1 class='header'>G2 Crowd Team Roster</h1>
+<br />
+<hr />
+<br />
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Picture</th>
-      <th>Title</th>
-      <th>Bio</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class='employee-container'>
 
-  <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td><%= employee.name %></td>
-        <td><%= employee.picture %></td>
-        <td><%= employee.title %></td>
-        <td><%= employee.bio %></td>
-        <td>This employee has <%= pluralize(employee.votes.count, "vote") %>!</td>
-        <td><%= button_to '+1', upvote_employee_path(employee), method: :post %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+   <% @employees.each do |employee| %>
+      <div class='employee-panel'>
+         <div class='image-container'>
+            <img src='<%= employee['image_url'] %>'></a>
+         </div>
+         <div class='info-container'>
+           <li><%= employee['id'] %></li>
+           <li class='employee-name'><%= employee['name'] %></li>
+           <li class='employee-title'><%= employee['title'] %></li>
+           <li><%= employee['bio'] %></li>
+           <div class='vote-container'>
+             <b>Want to work with <%= employee['name'] %>?</b>
+             <span class="vote-button<%= employee['id'] %>">
+                <button class="vote" id="vote-button<%= employee['id'] %>" data-id="<%= employee['id'] %>">Yes!</button>
+             </span>
+             <br />0 people have said yes!<span class="votes<%= employee['id'] %>">
+             </span>
+           </div>
+        </div>
+      </div>
+      <hr />
+   <% end %>
+
+</div>
 
 <br>
 
