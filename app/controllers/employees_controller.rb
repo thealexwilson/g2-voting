@@ -4,9 +4,7 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = HTTParty.get('http://api.myjson.com/bins/jhz5z',
-    :headers =>{'Content-Type' => 'application/json'}).parsed_response
-    # @employees = Employee.all
+    @employees = Employee.all    
   end
 
   # GET /employees/1
