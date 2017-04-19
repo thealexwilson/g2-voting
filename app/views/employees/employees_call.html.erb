@@ -10,7 +10,7 @@
    <% @employees.each do |employee| %>
       <div class='employee-panel'>
          <div class='image-container'>
-            <img src='<%= employee['image_url'] %>'></a>
+            <img src='<%= employee['picture'] %>'></a>
          </div>
          <div class='info-container'>
            <li><%= employee['id'] %></li>
@@ -20,10 +20,10 @@
            <div class='vote-container'>
              <b>Want to work with <%= employee['name'] %>?</b>
 
-             <span class="vote-button<%= employee['id'] %>">
-                <button class="vote" id="vote-button<%= employee['id'] %>" data-id="<%= employee['id'] %>">Yes!</button>
+             <span class="vote-button<%= employee['id'] %>">                
+                <td><%= button_to '+1', upvote_employee_path(employee), method: :post %></td>
              </span>
-             <br />0 people have said yes!<span class="votes<%= employee['id'] %>">
+             <br /><%= pluralize(employee.votes.count, "vote") %> people have said yes!<span class="votes<%= employee['id'] %>">
              </span>
            </div>
         </div>
@@ -32,7 +32,3 @@
    <% end %>
 
 </div>
-
-<br>
-
-<%= link_to 'New Employee', new_employee_path %>
