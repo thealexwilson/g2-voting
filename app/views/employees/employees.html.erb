@@ -12,16 +12,15 @@
          <div class='image-container'>
             <img src='<%= employee['picture'] %>'></a>
          </div>
-         <div class='info-container'>
-           <li><%= employee['id'] %></li>
+         <div class='info-container'>           
            <li class='employee-name'><%= employee['name'] %></li>
            <li class='employee-title'><%= employee['title'] %></li>
            <li><%= employee['bio'] %></li>
            <div class='vote-container'>
              <b>Want to work with <%= employee['name'] %>?</b>
 
-             <span class="vote-button<%= employee['id'] %>">                
-                <td><%= button_to '+1', upvote_employee_path(employee), method: :post %></td>
+             <span class="vote-button<%= employee['id'] %>">
+                <td><%= button_to 'Yes!', upvote_employee_path(employee), method: :post %></td>
              </span>
              <br /><%= pluralize(employee.votes.count, "vote") %> people have said yes!<span class="votes<%= employee['id'] %>">
              </span>
